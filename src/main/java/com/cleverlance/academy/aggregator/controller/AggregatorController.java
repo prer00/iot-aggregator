@@ -1,9 +1,8 @@
 package com.cleverlance.academy.aggregator.controller;
 
-import com.cleverlance.academy.aggregator.model.Address;
 import com.cleverlance.academy.aggregator.model.Identification;
-import com.cleverlance.academy.aggregator.model.Owner;
-import io.micrometer.core.instrument.Meter;
+import com.cleverlance.academy.aggregator.model.Person;
+import com.cleverlance.academy.aggregator.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//localhost:8080/swagger-ui/index.html
 @Slf4j
 @RestController
 public class AggregatorController {
@@ -23,8 +22,10 @@ public class AggregatorController {
 //    @GetMapping(path = "/identification")
 //    public ResponseEntity<Identification> welcome() {
 //        return ResponseEntity.ok(new Identification("Robertova meteostanice",
-//                new Address("Jana Žižky", "1598/22","Most"), new Owner("Robert", "Pretschner")));
+//                new Address("Jana Žižky", "1598/22","Most"), new Person("Robert", "Pretschner")));
 //    }
+
+    private PersonService personService;
 
     @PostMapping("/server")
     public ResponseEntity<Void> saveServer(@RequestBody Identification identification){
@@ -39,5 +40,14 @@ public class AggregatorController {
     public ResponseEntity<List<Identification>> getIdentifications() {
 
         return ResponseEntity.ok(this.identifications);
+    }
+
+    @PostMapping("/person")
+    public ResponseEntity<Void> savePerson(@RequestBody Person person){
+
+        this.personService.save(person);
+
+        return ResponseEntity.ok().build();
+
     }
 }

@@ -7,7 +7,7 @@ public class Identification {
 
     private String name;
     private Address adress;
-    private Owner owner;
+    private Person owner;
 
 
 }
