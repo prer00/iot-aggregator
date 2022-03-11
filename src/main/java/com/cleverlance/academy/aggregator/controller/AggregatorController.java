@@ -22,10 +22,14 @@ public class AggregatorController {
 //    @GetMapping(path = "/identification")
 //    public ResponseEntity<Identification> welcome() {
 //        return ResponseEntity.ok(new Identification("Robertova meteostanice",
-//                new Address("Jana Žižky", "1598/22","Most"), new Person("Robert", "Pretschner")));
+//                new Address("Vedlejší", "1337/24","Most"), new Person("Robert", "Pretschner")));
 //    }
 
     private PersonService personService;
+
+    public AggregatorController(PersonService personService) {
+        this.personService = personService;
+    }
 
     @PostMapping("/server")
     public ResponseEntity<Void> saveServer(@RequestBody Identification identification){

@@ -6,7 +6,7 @@ import lombok.Value;
 public class Identification {
 
     private String name;
-    private Address adress;
+    private Address address;
     private Person owner;
 
 
